@@ -25,7 +25,7 @@ node {
    } 
         
    stage('docker post deploy /validation') {
-      docker.image('mvangeepuram/nodejs').withRun {c ->
+      docker.image('mvangeepuram/nodejs').run {c ->
     sh 'docker ps -a | grep nodejs'
     sh 'curl -L http://localhost:3001/'     
 }
