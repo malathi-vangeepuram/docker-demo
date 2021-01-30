@@ -27,7 +27,7 @@ node {
    stage('docker post deploy /validation') {
       docker.image('mvangeepuram/nodejs').withRun {c ->
          docker.image('mvangeepuram/nodejs').inside("-p 3000:3000 --link ${c.id}:node") {
-            # sh 'curl -L http://localhost:3000/'
+            /* sh 'curl -L http://localhost:3000/' */
              sh "docker logs ${c.id}"
         }
            
