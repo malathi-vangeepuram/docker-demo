@@ -21,4 +21,4 @@ node {
            sh "/usr/bin/docker logs ${c.id}"
     }
 }
-}
+
