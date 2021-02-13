@@ -12,10 +12,9 @@ node {
      }
    }
    stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
+    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
        def app = docker.build("mvangeepuram/nodejs:${commit_id}", '.').push()
- 
-   }
+    }
    }
    
    stage('docker build/push') {
@@ -26,16 +25,7 @@ node {
         
    stage('docker post deploy /validation') {
       docker.image('mvangeepuram/nodejs').withRun{c -> }
-         
-         
-       
-           
-           docker.image('mvangeepuram/nodejs').inside("-p 3000:3000 --link ${c.id}:node") {
-            /* sh 'curl -L http://localhost:3000/' */
-           /*  sh "/usr/bin/docker logs ${c.id}" */
-        }
-             sh "/usr/bin/docker logs ${c.id}"
-      }
-   }
+           docker.image('mvangeepuram/nodejs').inside("-p 3000:3000 --link ${c.id}:node") {   }
+           sh "/usr/bin/docker logs ${c.id}"
+    }
 }
-
